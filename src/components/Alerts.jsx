@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-export default class Current extends Component {
+export default class Alerts extends Component {
   render() {
     return (
-      <div>Current</div>
+      <div>Alerts</div>
     )
   }
 }

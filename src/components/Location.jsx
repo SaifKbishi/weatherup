@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Container, Box, Typography, Button  } from '@mui/material/';
 
 export default class Location extends Component {
   // console.log(this.props.location.name);
@@ -16,13 +17,15 @@ export default class Location extends Component {
     
   render() {
     return (
-      <>
-        <div>Location</div>
-        <h1>{this.props.location.name}</h1>
-        <h1>{this.props.location.country}</h1>
-        <h1>{this.props.location.region}</h1>
-        <h1>{this.props.location.localtime}</h1>
-      </>
+      <Container>
+        <Box sx={{display:'flex', m:1}}>
+          <Typography sx={{display:'flex', p:0.5}}>City: {this.props.location.name}</Typography>
+          <Typography sx={{display:'flex', p:0.5}}>Region: {this.props.location.region}</Typography>
+          <Typography sx={{display:'flex', p:0.5}}>Country: {this.props.location.country}</Typography>
+          <Typography sx={{display:'flex', p:0.5}}>Date: {this.props.location.localtime.substring(0,10)}</Typography>
+          <Typography sx={{display:'flex', p:0.5}}>Time: {this.props.location.localtime.substring(10)}</Typography>
+        </Box>                
+      </Container>
     )
   }
 }
