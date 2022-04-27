@@ -6,6 +6,7 @@ import Current from './Current';
 import DayForcast from './DayForcast';
 import Hours from './Hours';
 import Location from './Location';
+import Forecast from './Forecast';
 
 export default class Home extends Component {
   constructor(props){
@@ -47,15 +48,12 @@ export default class Home extends Component {
     }
   }  
   showPosition(position){
-    // console.log('showPosition');
     this.setState({test:'showPosition'});
-    // console.log(`Latitude: ${position.coords.latitude}, longitude: ${position.coords.longitude}`);
     this.setState({Latitude: position.coords.latitude, Longitude: position.coords.longitude}, ()=>{
       this.getClientPostion();
     });
   }
   async getLocation(){
-    // console.log('getLocation');
     if (navigator.geolocation) {
       this.setState({test:'geoLocation'});
       navigator.geolocation.getCurrentPosition(this.showPosition, this.handleError);      
@@ -86,7 +84,31 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Container sx={{display:'flex', flexDirection:'column',px:{xs:0, md:1}}} maxWidth={false}>
+      <Container className="homeContainer"sx={{display:'flex', flexDirection:'column'}} maxWidth={false}>
+        <Box id='location'>
+          {this.state.weatherData.location && <Location location={this.state.weatherData.location} />}
+        </Box>
+        <Box id='main' sx={{display:'flex', flexDirection:{xs:'column', md:'row'} }}>
+          <Box id='currentAndForcastWithAstro'>
+            <Box id='current'>
+              {this.state.weatherData.current && <Current current={this.state.weatherData.current} />}              
+            </Box>
+            <Box id='mainForcastAndAstro'>
+              {this.state.weatherData.forecast && <Forecast forecast={this.state.weatherData.forecast}/>}              
+            </Box>                   
+          </Box>                   
+          <Box id='hours' sx={{height:'92vh'}}>
+            {this.state.weatherData.forecast && <Hours hours={this.state.weatherData.forecast}/>}
+          </Box>
+        </Box>
+      </Container>
+    )
+  }
+}
+
+
+/**
+ * <Container sx={{display:'flex', flexDirection:'column',px:{xs:0, md:1}}} maxWidth={false}>
         <Box sx={{minWidth:'100%'}}>
           {this.state.weatherData.location && <Location location={this.state.weatherData.location} />}
         </Box>
@@ -110,6 +132,4 @@ export default class Home extends Component {
           </Box>
         </Box>
       </Container>
-    )
-  }
-}
+ */

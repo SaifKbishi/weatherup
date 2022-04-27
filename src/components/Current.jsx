@@ -9,9 +9,9 @@ export default class Current extends Component {
 
   render() {
     return (
-      <Container sx={{bgcolor:'#b2ada3', fontSize:25, height:280}} maxWidth={false}>
-        <Typography variant='h4' sx={{p:2}}>Current</Typography>            
-        <Box key={this.props.current.last_updated_epoch} sx={{display:'flex', flexDirection:'column'}}>
+      <Container className="currentContainer"  maxWidth={false}>
+        <Typography variant='h4' sx={{p:2}}>Today</Typography>            
+        <Box key={this.props.current.last_updated_epoch} sx={{display:'flex', flexDirection:{xs:'column', md:'row'}, justifyContent:'space-around'}}>
             <Box sx={{display:'flex', justifyContent:'center', alignItems: 'center'}}>
               <Typography sx={{fontSize:25}}>Condition: {this.props.current.condition.text}</Typography>
               <CardMedia sx={{maxWidth:50}}

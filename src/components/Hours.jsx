@@ -17,11 +17,11 @@ export default class Hours extends Component {
   render() {
     this.findCurrentHour()
     return (
-      <Container sx={{bgcolor:'#738083', fontSize:25}} maxWidth={false}>
+      <Container id="hoursContainer" sx={{bgcolor:'#738083', fontSize:25, }} maxWidth={false}>
         <Typography>Time</Typography>
         {this.props.hours.forecastday[0].hour.map((thehour, index)=>{
           return(
-            <Box key={thehour.time} sx={{display:'flex',  bgcolor: '#5085a5',border:'1px', m:0.2, p:0.5}}>
+            <Box key={thehour.time} sx={{display:'flex',  bgcolor: '#5085a5',border:'1px', m:0.2, p:0.5, }}>
               {
                 (thehour.time.substring(11,13) == this.findCurrentHour()) ?
                 <Typography sx={{display:'flex', p:0.3, px:2, alignItems: 'center', fontWeight:'bold', }} className="focused" autoFocus> {thehour.time.substring(11)} </Typography>

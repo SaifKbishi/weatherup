@@ -19,7 +19,7 @@ export default class Astro extends Component {
           {this.props.forecast.forecastday.map((forecastday)=>{
             return(
               <Box key={forecastday.date_epoch} sx={{display: 'flex', flexDirection:'column', justifyContent:'space-between', py:4}}>
-                <Typography sx={{fontWeight:'bold'}}>Sunrise: </Typography>                <Typography>{forecastday.astro.sunrise}</Typography>
+                <Typography>Sunrise: {forecastday.astro.sunrise}</Typography>
                 <Typography>Sunset: {forecastday.astro.sunset}</Typography>
                 <Typography>Moonrise: {forecastday.astro.moonrise}</Typography>
                 <Typography>Moon Phase: {forecastday.astro.moon_phase}</Typography>
