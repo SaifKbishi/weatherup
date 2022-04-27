@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Container, Box, Typography, Button  } from '@mui/material/';
+import {Container, Box, Typography, Divider} from '@mui/material/';
 
 export default class Astro extends Component {
   constructor(props){
@@ -10,20 +10,25 @@ export default class Astro extends Component {
 
   render() {
     return (
-      <>
-      {this.props.forecast.forecastday.map((forecastday)=>{
-        return(
-          <Box key={forecastday.date_epoch}>
-            <Typography>Date: {forecastday.date}</Typography>
-            <Typography>Max temperature: {forecastday.day.maxtemp_c}</Typography>            
-            <Typography>Min temperature: {forecastday.day.mintemp_c}</Typography>            
-            <Typography>Maximum wind speed: {forecastday.day.maxwind_kph}</Typography>            
-            <Typography>Will it rain today? {forecastday.day.daily_will_it_rain ? 'Yes' : 'No'}</Typography>           
-            <Typography>UV: {forecastday.day.uv}</Typography>            
-          </Box>
-        );
-      })}        
-      </>
+      <Container sx={{bgcolor:'#98a28f', fontSize:25, display:'flex', flexDirection:'column', height:'100%' }} maxWidth={false}>
+        <Box>
+        <Typography variant='h5' sx={{height:120, display:'flex', justifyContent:'center', alignItems: 'center'}}>Astro</Typography>
+        </Box>
+          <Divider />
+        <Box sx={{py:5}}> 
+          {this.props.forecast.forecastday.map((forecastday)=>{
+            return(
+              <Box key={forecastday.date_epoch} sx={{display: 'flex', flexDirection:'column', justifyContent:'space-between', py:4}}>
+                <Typography sx={{fontWeight:'bold'}}>Sunrise: </Typography>                <Typography>{forecastday.astro.sunrise}</Typography>
+                <Typography>Sunset: {forecastday.astro.sunset}</Typography>
+                <Typography>Moonrise: {forecastday.astro.moonrise}</Typography>
+                <Typography>Moon Phase: {forecastday.astro.moon_phase}</Typography>
+                <Typography>Moon Illumination: {forecastday.astro.moon_illumination}</Typography>                
+              </Box>
+            );
+          })}
+        </Box>
+      </Container>
     )
   }
 }
